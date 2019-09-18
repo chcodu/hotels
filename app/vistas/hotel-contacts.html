@@ -1,0 +1,36 @@
+<div class="encabezadoContactos">
+    <h1>{{titulo}}</h1>
+</div>
+
+<div class="formContactos">
+    <div>
+        <p style="text-align: justify">
+            En esta sección todos los usuarios que acceden a nuestro sitio web nos pueden dejar un comentario acerca del trato recibido al momento de visitar nuestro resort, este comentario nos permitirá mejorar nuestros servicios e instalaciones para que en una
+            próxima visita ofrecer una mayor satisfacción en su estadía.
+        </p>
+        <p>
+            Gracias por ayudarnos a mejorar.
+        </p>
+    </div>
+    <form #formularionContactos="ngForm" (ngSubmit)="onSubmit()">
+        <label>Nombre Completo: </label>
+        <p>
+            <input type="text" #nombre="ngForm" class="form-control" placeholder="Nombre completo" ngControl="nombre" [(ngModel)]="contacto.Nombre" required/>
+            <span class="mensajeAlerta" *ngIf="!nombre.valid">Este campo es requerido</span>
+        </p>
+        <label>Correo electrónico: </label>
+        <div class="input-group">
+            <input type="text" #email="ngForm" class="form-control" placeholder="Correo electrónico" aria-describedby="basic-addon2" ngControl="email" [(ngModel)]="contacto.Email" required>
+            <span class="input-group-addon" id="basic-addon2">@example.com</span>
+        </div>
+        <p>
+            <span class="mensajeAlerta" *ngIf="!email.valid">Este campo es requerido</span>
+        </p>
+        <label>Comentario: </label>
+        <p>
+            <textarea #comentario="ngForm" class="form-control" ngControl="comentario" placeholder="Deja tu comentario" [(ngModel)]="contacto.Comentario" required></textarea>
+            <span class="mensajeAlerta" *ngIf="!comentario.valid">Este campo es requerido</span>
+        </p>
+        <button type="submit" [disabled]="!formularionContactos.form.valid" class="btn btn-success">Guardar Comentario</button>
+    </form>
+</div>
